@@ -1,0 +1,30 @@
+PACMAN
+
+* All in problem statement completed
+
+* Bored of the boring fixed design in level type gaming ?
+-> We have unlimited designs and patterns, god say thanks to random.
+
+* Want to play on random map but want to feel like if you are playing on a level type gaming ?
+-> No worry, we have an option to let program memorize your last board, it wouldn't change it ever, so you can have unlimited fun on it.
+
+* Multiple Ghost
+-> Yes, you read it right..!
+-> There are many hungry bots (GHOSTS) on the map, who love PACMAN's blood, so be attentioned during your play
+
+* You would have again used random in it, so what, I can skip ghosts....
+-> No, no, that was old fashioned, so a priority queue is given to ghost to memorize, and they would move according smelling PACMAN's blood.
+-> Yeah, no shortest path algorithm, so you can still skip them, think there movement pattern.. :)
+
+* I hate black and white.
+-> No worry, I have tried to make it a little colorfull so you can enjoy during the play
+
+* How to complete one round ?
+-> It is still simple, but harder then being eaten by ghosts.
+-> Just collect all coins.
+
+* What is connection between ghosts and all coins ?
+-> Well, I think they can also be won by giving enough money to them, so that they can buy themselves blood juice and leave you.
+
+ALL THE BEST
+HAPPY PLAYING..!

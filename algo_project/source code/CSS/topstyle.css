@@ -1,0 +1,70 @@
+body { 
+	background-color:#00222B; 
+	color:#80E5FF;
+	font-family:"Helvetica";
+	font-weight:bold;
+	text-align:center;
+}
+
+table {
+	table-layout:fixed;
+	white-space:nowrap;
+	width: 500px;
+	margin: 10px auto;
+	font-weight:bold;
+}
+
+td {
+	text-align:center;
+	padding:5px;
+}
+
+
+.button {
+	background-color:#00222B;
+	border: 2px solid #FF0000;
+	color:#80E5FF;
+	font-weight:bold;
+}
+
+input[type=range] {
+	-webkit-appearance: none !important;
+	background:#800000;
+	border: 1px solid #FF0000;
+}
+
+a {
+	color:#FF5555;
+}
+
+h1 {
+	color:#FF0000;
+	text-align:center;
+}
+
+h2 {
+	color:#FF0000;
+	text-align:center;
+}
+
+.customSelect select {
+	color:#80E5FF;
+	width: 210px;
+	height: 25px;
+	background: transparent;
+	border: none;
+	-webkit-appearance: none;
+}
+
+.customSelect {
+	border: 1px solid #FF0000;
+	height: 25px;
+	overflow: hidden;
+	background: url(arrow.png) no-repeat 96% ;
+	background-size:15px 15px;
+	width: 190px;
+}
+
+select option {
+	background: #00222B;
+}
