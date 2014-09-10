@@ -1,0 +1,145 @@
+/*
+a program which outputs its running status (sleep, stopped ..etc), the parent ID of that process,  
+and number of threads a program is using. Input will be a pid through command line. 
+
+this version use system calls only, see the other program named status_library for same code using library calls
+*/
+
+#define _GNU_SOURCE
+#include <dirent.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/syscall.h>
+char * mystrstr(const char* str, const char* target){
+    if(!*target) return NULL;
+    char *p1 = (char*)str;
+    while(*p1)
+    {
+        char *p1Begin = p1, *p2 = (char*)target;
+        while(*p1 && *p2 && *p1 == *p2)
+        {
+            p1++;
+            p2++;
+        }
+        if(!*p2)
+            return p1Begin;
+        p1 = p1Begin + 1;
+    }
+    return NULL;
+}
+
+void concat(char *s1,char *s2)
+{
+     while(*s1!='\0')
+             s1++;
+     while(*s2!='\0')
+     {
+            *s1=*s2;
+             s1++;                                         
+             s2++;                                         
+     }
+      *s1='\0';
+}
+void print(char *str, int type)
+{
+int i=0;
+while(i<50&&str[i]!='\0')
+i++;
+write(1,str,i);
+if(type==1)
+write(1," ",1);
+if(type==2)
+write(1,"\n",1);
+}
+int main(int argc, char *argv[])
+{
+    char pid[1000]="/proc/";
+    char x[200];
+    char buf[100000]={0};
+    int i,j,ct;
+    if(argc==1)
+    {
+      print("Supply PID to me please.",2);
+      return 0;
+    }
+    if(argc>2)
+    {
+      print("So many PIDs ! Error.",2);
+      return 0;
+    }
+    concat(pid,argv[1]);
+    concat(pid,"/status");
+    char* ptr;
+    int fd = open(pid, O_RDONLY);    
+    if(fd!=-1)
+    {
+        read(fd,buf,2048);
+        ptr = mystrstr(buf,"State:");
+        print_and_end_assignment(ptr);
+        ptr = mystrstr(buf,"PPid:");
+        print_and_end_assignment(ptr);
+        ptr = mystrstr(buf,"Threads:");
+        print_and_end_assignment(ptr);
+
+    }
+    else
+    {
+        printf("\nThis PID is not active.\n");
+        exit(0);
+    }
+}
+
+int print_and_end_assignment(char *ptr)
+{
+    int i;
+    char* temp;
+    while(*(ptr)!='\n')
+    {
+        ptr--;
+    }
+    ptr++;
+    temp=ptr;
+    i=0;
+    while(*(ptr)!='\n')
+    {
+        ptr++;
+        i++;
+    }
+    write(1,temp,i);
+    write(1,"\n",1);
+}
+/*
+
+void getName(char * path,char * check){
+    char buf[100000] = {0};
+    if(fd!=-1)
+    {
+        read(fd,buf,2048);
+        char* ptr = mystrstr(buf,check);
+        char* temp;
+        while(*(ptr)!='\n')
+        {
+            ptr--;
+        }
+        ptr++;
+        temp=ptr;
+        i=0;
+        while(*(ptr)!='\n')
+        {
+            ptr++;
+            i++;
+        }
+        write(1,temp,i);
+        write(1,"\n",1);
+        return;
+    }
+    else
+    {
+        printf("\nThis PID is not active.\n");
+        exit(0);
+    }
+}
+*/
